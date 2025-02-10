@@ -1,0 +1,169 @@
+define mc = Character("[nom_du_perso]", color="bc79e5")
+$ nom_du_perso = nom_du_perso.strip()
+define d = Character("Dragon", color="c31d1d")
+define p = Character("Passant", color="e4e41d")
+
+label start:
+
+    scene boutique
+
+    "La boutique Nom boutique baigne dans la lumière douce du matin. L’odeur des roses fraîches et du lilas se mêlait à la chaleur du thé que tu tiens entre tes mains."
+    "Mais au fait, comment t'appelles tu?"
+
+    $ nom_du_perso = renpy.input("Entrez un nom.")
+    if not nom_du_perso:
+        $ nom_du_perso = "Lise"
+
+    "C'est ne matinée tranquille, du moins jusqu’à ce qu’un bruissement de papier attire ton attention. Tu lève les yeux et aperçoit une lettre glissée sous la porte."
+    "MC ramasse la lettre et fronce les sourcils. Il n’y a ni nom ni sceau, juste une enveloppe sobre qui dégage un parfum subtil d'oeillet. Intriguée, elle ouvre la lettre."
+    "{i}~À la fleuriste qui comprend le langage des fleurs, prépare-moi ces bouquets. Trois âmes en ont besoin pour retrouver leur voie.~{i}"
+    "Mc lit la liste écrite en dessous, un léger frisson la parcourut."
+    "Bouquet 1 : Lys, œillet rouge, chardon."
+    "Bouquet 2 : Rose bleue, nénuphar, bruyère."
+    "Bouquet 3 : Jasmin, coquelicot, lierre."
+
+    menu:
+        "Accepter la commande":
+            jump Accepter
+
+        "Chercher l’identité de l’expéditeur":
+            jump Chercher
+
+        "Hésiter":
+            jump hesiter
+
+
+label Accepter:
+    "Je me relève et me dirige vers mon comptoir"
+    jump preparation
+
+
+label Chercher:
+    "J'ouvre la porte et regarde dans la rue pour voir qui m'a déposé cette lettre. Je vis un passant et me dirige vers lui"
+    
+    mc "Bonjour madame, avez vous vu quelqu'un déposé une lettre dans cette boutique?"
+    p "Je n'ai pas fait attention"
+    mc "D'accord, bonne journée à vous"
+
+    "Je retourne à l'intérrieur de ma boutique bredouile."
+    mc "Pourquoi m'avoir glissé cette lettre sous ma porte? Me demander n'aurait pas était plus simple?"
+    mc "En plus il n'y a aucune information sur les personnes à qui sont destinés les bouquets, comment je vais faire pour les contacter? Y'a même pas d'adresse de livraison?! Je sens que cette commande va être compliqué..."
+    jump preparation
+
+
+label hesiter:
+    mc "C'est une blague de quelqu'un?"
+    mc "Y'a aucune information mise à part les diférents bouquets à composer... "
+    mc "Qui s'amuserai à me faire une blague comme ça? Puis qui choisirai des compositions aussi peu commune?"
+    mc "Bon...si le client arrive pour chercher ses bouquets et qu'ils sont pas prêt je vais avoir l'air idiote..."
+    jump preparation
+
+label preparation:
+    "Je pris les différentes fleures demander dans la lettre ainsi que du feuillage pour que le bouquet est plus de volume et me lança dans la préparation de la commande, mais un sentiment étrange s’empara de moi."
+    "Les fleurs semblent plus vibrantes, plus vivantes, comme si elles réagissent à mes gestes. Je secoua la tête, tentant de chasser cette impression. "
+
+    mc "Faut peut-être que j'arrête de boire trop de thé..."
+
+    menu:
+        "Ignorer la sensation":
+            jump Ignorer
+
+        "Vérifier la qualité des fleurs":
+            jump verifier
+
+label Ignorer:
+    "Je secoue la tête, me concentrant sur les fleurs. L'impression disparut peu à peu."
+    "Je continue à assembler les bouquets, mais un étrange frisson la continue de me suivre à chaque geste."
+    jump entrer1
+
+label verifier:
+    "J'observe les pétales avec une attention particulière. Les fleurs semblent étrangement vivantes, leurs couleurs plus vives, presque surnaturelles."
+    "Je me demande si la fatigue ne jouerai pas sur ses sens, mais je décida de continuer malgrè ça. Peut-être que ces fleurs sont juste... différentes. "
+    jump entrer1
+
+
+label entrer1:
+    "Alors que je me penche pour ajouter une touche de bruyère au bouquet, la porte s’ouvre brusquement. L’air frais s’engouffre dans la boutique."
+    "Un homme entra, son regard sombre balaye la pièce Description de l'homme"
+
+    show d
+    with dissolve
+
+    d "Je veux un bouquet. Peu importe lequel. Fais juste en sorte qu’il ne se fane pas rapidement."
+
+    "Il tapote le comptoir du bout des doigts, visiblement agacé d’attendre une réponse. Ses yeux ne me quitte pas, comme s’il attend une réaction de ma part."
+
+    menu:
+        "Lui demander des détails sur le bouquet":
+            jump detail
+
+        "Accepter sans poser de questions":
+            jump excecute
+
+        "Le taquiner":
+            jump taquiner
+
+label detail:
+    mc "C’est pour une occasion particulière ?"
+    d "Non. Juste… fais en sorte qu’il soit solide."
+    jump bouquet
+
+label excecute:
+    "Je me contente de hocher la tête, ne posant aucune question. Je me tourne immédiatement vers les fleurs et me mets au travail."
+    jump bouquet
+
+label taquiner:
+    mc "Toujours aussi poli avec les fleuristes ?"
+    d "Tch. J’ai juste besoin d’un bouquet, pas d’une leçon de bonnes manières."
+    jump bouquet
+
+label bouquet:
+    "Pendant que je lui prépare son bouquet, je jette un coup d'oeil dans sa direction et je le voit glisser discrètement une main sur un pétale de lys."
+    " Pendant un instant, je cru voir une lueur rougeâtre s’en dégager, comme une braise mourante… Mais ce devait être un jeu de lumière..."
+    
+    mc "Je devrais sincèrement pensée diminuer ma consomation de thé pour mieux dormir la nuit..."
+    d "Je dérage?!"
+    mc "Non vous inquètez pas. Puis-je avoir votre nom pour le bouquet s'il vous plait?"
+    d "Nom de l'homme"
+    mc "Merci, tenez nom de l'homme"
+    d "...c'est combien"
+    mc "ça vous fera 29$"
+
+    "Il paye rapidement avant de se tourner pour partir, mais pas sans une dernière remarque."
+
+    d "Faites attention à vos fleurs."
+
+    hide d
+    with dissolve
+
+    "Je le regarde partir, un frisson me traversant à nouveau. Ce n’est pas tant ses paroles que son regard. C'est comme si un danger était caché derrière son air détaché."
+    "Je secoue, m’efforçant à pensée à autre chose."
+    "Le soleil décline lentement et tandis que nettoie le comptoir mes pensées reviennent inlassablement à la rencontre avec Dragon."
+    "Ses yeux, sa voix… Ils me donnent l'impression qu'il cache quelque chose. Qu'est ce qu'il cherchait réellement..."
+
+    menu:
+        "Essayer de se détendre":
+            jump detendre
+
+        "Réfléchir davantage sur les intentions de dragon":
+            jump reflechir
+
+label detendre:
+    "Je secoua les épaules et prit une grande inspiration."
+    mc "C’est une commande comme une autre, pas besoin de se questionner autant"
+    "Je me dirige vers la porte arrière pour prendre l’air et me détendre un peu."
+    jump stop
+
+label reflechir:
+    "Je me pose de nombreuses questions sur Dragon. Qu’avait-il vraiment voulu dire par \"solide\" ? Pourquoi était-il si pressé ? Puis cette dernière phrase..."
+
+    d "Faites attention à vos fleurs." #faire du grisé
+
+    "Ces questions tourbillonnent dans mon esprit sans réponse..."
+    jump stop
+
+label stop:
+    mc "Faut que j'arrête de penser à ça"
+
+    "Je fini par rentrée chez moi et me reposé après cette journée plus qu'étrange"
+
